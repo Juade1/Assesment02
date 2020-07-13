@@ -1,5 +1,8 @@
 package com.stayready.assessment.week2.part01;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringUtils {
     /**
      * @param stringToBePadded - string value to be flushed right
@@ -7,7 +10,13 @@ public class StringUtils {
      * @return `stringToBePadded` flushed right by left-padding
      */
     public static String padLeft(String stringToBePadded, int amountOfPadding) {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < amountOfPadding; i++) {
+            sb.append(' ');
+        }
+
+        return sb.substring(stringToBePadded.length()) + stringToBePadded;
+
     }
 
     /**
@@ -16,7 +25,12 @@ public class StringUtils {
      * @return `stringToBePadded` flushed right by right-padding
      */
     public static String padRight(String stringToBePadded, int amountOfPadding) {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < amountOfPadding; i++) {
+            sb.append(' ');
+        }
+
+        return stringToBePadded + sb.substring(stringToBePadded.length());
     }
 
     /**
@@ -25,7 +39,7 @@ public class StringUtils {
      * @return the string repeated and concatenated `n` times
      */
     public static String repeatString(String stringToBeRepeated, int numberOfTimeToRepeat) {
-        return null;
+        return stringToBeRepeated.repeat(numberOfTimeToRepeat);
     }
 
     /**
@@ -33,7 +47,11 @@ public class StringUtils {
      * @return - true if string only contains alphabetic a-z characters
      */
     public static Boolean isAlphaString(String string) {
-        return null;
+
+        if ((string != null) && (!string.equals("") && (string.matches("^[a-zA-Z]*$")))) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -41,7 +59,11 @@ public class StringUtils {
      * @return - true if string only contains numeric characters
      */
     public static Boolean isNumericString(String string) {
-        return null;
+        for( int i =0; i< string.length();i++){
+            if(!Character.isDigit(string.charAt(i)));
+                return false;
+        }
+        return true;
     }
 
     /**
@@ -49,6 +71,15 @@ public class StringUtils {
      * @return - true if string only contains special characters
      */
     public static Boolean isSpecialCharacterString(String string) {
-        return null;
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
+
+        Matcher matcher = pattern.matcher(string);
+
+        if(!matcher.matches()){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
